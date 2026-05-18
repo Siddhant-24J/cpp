@@ -1,5 +1,5 @@
 AI2301: Object Oriented Programming
-Complete Question & Answer Book with Sample Outputs (25 Questions)
+Complete Question & Answer Book (25 Questions)
 
 Q1: Book Class - Multiple Books with Tabular Display and Total Price
 #include<iostream>
@@ -43,18 +43,6 @@ int main() {
     cout << "\nTotal Price of all books: Rs. " << total << endl;
     return 0;
 }
-Sample Output:
-How many books? 
---- Book 1 ---
-Enter Book ID: Enter Book Name: Enter Author: Enter Price: 
---- Book 2 ---
-Enter Book ID: Enter Book Name: Enter Author: Enter Price: 
-ID      Name                Author              Price     
-----------------------------------------------------------
-101     C++ Programming     Bjarne Stroustrup   550       
-102     Java Programming    James Gosling       600       
-
-Total Price of all books: Rs. 1150
  
 Q2: Student Records System - Tabular Display and Average Marks
 #include<iostream>
@@ -98,18 +86,6 @@ int main() {
     cout << "\nAverage Marks: " << total / n << endl;
     return 0;
 }
-Sample Output:
-How many students? 
---- Student 1 ---
-Enter Student ID: Enter Name: Enter Department: Enter Marks: 
---- Student 2 ---
-Enter Student ID: Enter Name: Enter Department: Enter Marks: 
-ID      Name                Dept           Marks     
------------------------------------------------------
-1       Alice               Computer Science95        
-2       Bob                 Information Tech88        
-
-Average Marks: 91.5
  
 Q3: Employee Payroll System - Total Salary Expenditure
 #include<iostream>
@@ -153,18 +129,6 @@ int main() {
     cout << "\nTotal Salary Expenditure: Rs. " << total << endl;
     return 0;
 }
-Sample Output:
-How many employees? 
---- Employee 1 ---
-Enter Emp ID: Enter Name: Enter Designation: Enter Salary: 
---- Employee 2 ---
-Enter Emp ID: Enter Name: Enter Designation: Enter Salary: 
-ID      Name                Designation         Salary    
-----------------------------------------------------------
-1001    Alice               Manager             75000     
-1002    Bob                 Developer           60000     
-
-Total Salary Expenditure: Rs. 135000
  
 Q4: Book Class with Constructor and Destructor
 #include<iostream>
@@ -174,7 +138,7 @@ class Book {
     string title, author;
     float price;
 public:
-    Book() : bookId(0), title(""), author(""), price(0) {
+    Book() : bookId(0), title("Unknown"), author("Unknown"), price(0) {
         cout << "Book object created (Default Constructor)" << endl;
     }
     Book(int id, string t, string a, float p) : bookId(id), title(t), author(a), price(p) {
@@ -187,34 +151,37 @@ public:
     ~Book() { cout << "Book object destroyed: " << title << endl; }
 };
 int main() {
-    Book b1;
-    Book b2(101, "C++ Programming", "Bjarne", 599.99);
-    Book b3(102, "Data Structures", "Lipschutz", 450.00);
+    int id;
+    string t, a;
+    float p;
+    cout << "Enter details for Book 1:\n";
+    cout << "Enter Book ID: "; cin >> id; cin.ignore();
+    cout << "Enter Title: "; getline(cin, t);
+    cout << "Enter Author: "; getline(cin, a);
+    cout << "Enter Price: "; cin >> p;
+    Book b1(id, t, a, p);
+
+    cout << "\nEnter details for Book 2:\n";
+    cout << "Enter Book ID: "; cin >> id; cin.ignore();
+    cout << "Enter Title: "; getline(cin, t);
+    cout << "Enter Author: "; getline(cin, a);
+    cout << "Enter Price: "; cin >> p;
+    Book b2(id, t, a, p);
+
     cout << "\n--- Book Details ---\n";
-    b1.display(); b2.display(); b3.display();
+    b1.display();
+    b2.display();
     cout << "\n--- Exiting main, destructors will be called ---\n";
     return 0;
 }
-Sample Output:
-Book object created (Default Constructor)
-Book object created: C++ Programming
-Book object created: Data Structures
-
---- Book Details ---
-ID: 0, Title: , Author: , Price: 0
-ID: 101, Title: C++ Programming, Author: Bjarne, Price: 599.99
-ID: 102, Title: Data Structures, Author: Lipschutz, Price: 450
-
---- Exiting main, destructors will be called ---
-Book object destroyed: Data Structures
-Book object destroyed: C++ Programming
-Book object destroyed:
  
 Q5: Student Class with Parameterized Constructor and Destructor
 #include<iostream>
 using namespace std;
 class Student {
-    int rollNo; string name; float marks;
+    int rollNo;
+    string name;
+    float marks;
 public:
     Student(int r, string n, float m) : rollNo(r), name(n), marks(m) {
         cout << "Student object created: " << name << endl;
@@ -225,36 +192,42 @@ public:
     ~Student() { cout << "Student object destroyed: " << name << endl; }
 };
 int main() {
-    cout << "--- Creating Student Objects ---\n";
-    Student s1(1, "Alice", 92.5);
-    Student s2(2, "Bob", 85.0);
-    Student s3(3, "Charlie", 78.3);
+    int r;
+    string n;
+    float m;
+    cout << "Enter details for Student 1:\n";
+    cout << "Roll No: "; cin >> r; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Marks: "; cin >> m;
+    Student s1(r, n, m);
+
+    cout << "\nEnter details for Student 2:\n";
+    cout << "Roll No: "; cin >> r; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Marks: "; cin >> m;
+    Student s2(r, n, m);
+
+    cout << "\nEnter details for Student 3:\n";
+    cout << "Roll No: "; cin >> r; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Marks: "; cin >> m;
+    Student s3(r, n, m);
+
     cout << "\n--- Student Details ---\n";
-    s1.display(); s2.display(); s3.display();
+    s1.display();
+    s2.display();
+    s3.display();
     cout << "\n--- Exiting main ---\n";
     return 0;
 }
-Sample Output:
---- Creating Student Objects ---
-Student object created: Alice
-Student object created: Bob
-Student object created: Charlie
-
---- Student Details ---
-Roll No: 1, Name: Alice, Marks: 92.5
-Roll No: 2, Name: Bob, Marks: 85
-Roll No: 3, Name: Charlie, Marks: 78.3
-
---- Exiting main ---
-Student object destroyed: Charlie
-Student object destroyed: Bob
-Student object destroyed: Alice
  
 Q6: Employee Class with Constructor and Destructor
 #include<iostream>
 using namespace std;
 class Employee {
-    int empId; string name; float salary;
+    int empId;
+    string name;
+    float salary;
 public:
     Employee(int id, string n, float s) : empId(id), name(n), salary(s) {
         cout << "Employee created: " << name << " (ID: " << empId << ")" << endl;
@@ -265,39 +238,46 @@ public:
     ~Employee() { cout << "Employee removed from memory: " << name << " (ID: " << empId << ")" << endl; }
 };
 int main() {
-    cout << "--- Creating Employee Objects ---\n";
-    Employee e1(101, "Ravi", 50000);
-    Employee e2(102, "Priya", 62000);
-    Employee e3(103, "Amit", 45000);
+    int id;
+    string n;
+    float s;
+    cout << "Enter details for Employee 1:\n";
+    cout << "Employee ID: "; cin >> id; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Salary: "; cin >> s;
+    Employee e1(id, n, s);
+
+    cout << "\nEnter details for Employee 2:\n";
+    cout << "Employee ID: "; cin >> id; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Salary: "; cin >> s;
+    Employee e2(id, n, s);
+
+    cout << "\nEnter details for Employee 3:\n";
+    cout << "Employee ID: "; cin >> id; cin.ignore();
+    cout << "Name: "; getline(cin, n);
+    cout << "Salary: "; cin >> s;
+    Employee e3(id, n, s);
+
     cout << "\n--- Employee Details ---\n";
-    e1.display(); e2.display(); e3.display();
+    e1.display();
+    e2.display();
+    e3.display();
     cout << "\n--- Exiting main ---\n";
     return 0;
 }
-Sample Output:
---- Creating Employee Objects ---
-Employee created: Ravi (ID: 101)
-Employee created: Priya (ID: 102)
-Employee created: Amit (ID: 103)
-
---- Employee Details ---
-ID: 101, Name: Ravi, Salary: Rs. 50000
-ID: 102, Name: Priya, Salary: Rs. 62000
-ID: 103, Name: Amit, Salary: Rs. 45000
-
---- Exiting main ---
-Employee removed from memory: Amit (ID: 103)
-Employee removed from memory: Priya (ID: 102)
-Employee removed from memory: Ravi (ID: 101)
  
 Q7: BankAccount - Static Members and Object as Argument
 #include<iostream>
 using namespace std;
 class BankAccount {
-    int accNo; string holderName; double balance;
+    int accNo;
+    string holderName;
+    double balance;
     static int totalAccounts;
     static double totalBalance;
 public:
+    BankAccount() : accNo(0), holderName(""), balance(0) {}
     BankAccount(int no, string name, double bal) : accNo(no), holderName(name), balance(bal) {
         totalAccounts++; totalBalance += balance;
     }
@@ -315,37 +295,55 @@ public:
 int BankAccount::totalAccounts = 0;
 double BankAccount::totalBalance = 0;
 int main() {
-    BankAccount a1(1001, "Alice", 25000);
-    BankAccount a2(1002, "Bob", 18000);
-    BankAccount a3(1003, "Charlie", 32000);
+    int no;
+    string name;
+    double bal;
+    cout << "Enter details for Account 1:\n";
+    cout << "Account No: "; cin >> no; cin.ignore();
+    cout << "Holder Name: "; getline(cin, name);
+    cout << "Balance: "; cin >> bal;
+    BankAccount a1(no, name, bal);
+
+    cout << "\nEnter details for Account 2:\n";
+    cout << "Account No: "; cin >> no; cin.ignore();
+    cout << "Holder Name: "; getline(cin, name);
+    cout << "Balance: "; cin >> bal;
+    BankAccount a2(no, name, bal);
+
+    cout << "\nEnter details for Account 3:\n";
+    cout << "Account No: "; cin >> no; cin.ignore();
+    cout << "Holder Name: "; getline(cin, name);
+    cout << "Balance: "; cin >> bal;
+    BankAccount a3(no, name, bal);
+
     BankAccount::showTotalAccounts();
     BankAccount::showTotalBalance();
     a1.compareBalance(a2);
     a2.compareBalance(a3);
     return 0;
 }
-Sample Output:
-Total Accounts: 3
-Total Balance: Rs. 75000
-
---- Balances in Ascending Order ---
-Bob (Acc#1002): Rs. 18000
-Alice (Acc#1001): Rs. 25000
-
---- Balances in Ascending Order ---
-Bob (Acc#1002): Rs. 18000
-Charlie (Acc#1003): Rs. 32000
  
 Q8: Student Class - Friend Function comparePercentage()
 #include<iostream>
 #include<iomanip>
 using namespace std;
 class Student {
-    int rollNo; string name; float marks[5]; float percentage; string division;
+    int rollNo;
+    string name;
+    float marks[5];
+    float percentage;
+    string division;
 public:
-    Student(int r, string n, float m1, float m2, float m3, float m4, float m5) : rollNo(r), name(n) {
-        marks[0]=m1; marks[1]=m2; marks[2]=m3; marks[3]=m4; marks[4]=m5;
-        calcPercentage(); calcDivision();
+    Student() : rollNo(0), name(""), percentage(0), division("") {}
+    void getDetails() {
+        cout << "Enter Roll No: "; cin >> rollNo; cin.ignore();
+        cout << "Enter Name: "; getline(cin, name);
+        cout << "Enter marks of 5 subjects:\n";
+        for(int i = 0; i < 5; i++) {
+            cout << "  Subject " << i+1 << ": "; cin >> marks[i];
+        }
+        calcPercentage();
+        calcDivision();
     }
     void calcPercentage() {
         float total = 0;
@@ -374,30 +372,28 @@ void comparePercentage(Student &s1, Student &s2) {
         cout << s2.name << " has higher percentage: " << s2.percentage << "%" << endl;
 }
 int main() {
-    Student s1(1, "Alice", 85, 90, 78, 92, 88);
-    Student s2(2, "Bob", 72, 68, 80, 75, 70);
-    s1.display(); s2.display();
+    Student s1, s2;
+    cout << "--- Enter details for Student 1 ---\n";
+    s1.getDetails();
+    cout << "\n--- Enter details for Student 2 ---\n";
+    s2.getDetails();
+    cout << "\n--- Student Details ---\n";
+    s1.display();
+    s2.display();
     comparePercentage(s1, s2);
     cout << "\n--- Exiting main ---\n";
     return 0;
 }
-Sample Output:
-Roll: 1, Name: Alice, Percentage: 86.60%, Division: First
-Roll: 2, Name: Bob, Percentage: 73.00%, Division: First
-
---- Comparing Percentages ---
-Alice has higher percentage: 86.60%
-
---- Exiting main ---
-Student object destroyed: Bob
-Student object destroyed: Alice
  
 Q9: ParkingTicket - Static Members, Dynamic Allocation, Friend Function
 #include<iostream>
 using namespace std;
 class ParkingTicket {
-    int ticketNumber; string vehicleNumber; float parkingFee;
-    static int totalTickets; static float totalCollection;
+    int ticketNumber;
+    string vehicleNumber;
+    float parkingFee;
+    static int totalTickets;
+    static float totalCollection;
 public:
     ParkingTicket(int tn, string vn, float fee) : ticketNumber(tn), vehicleNumber(vn), parkingFee(fee) {
         totalTickets++; totalCollection += fee;
@@ -420,9 +416,27 @@ void compareFees(ParkingTicket &a, ParkingTicket &b) {
     else { b.display(); a.display(); }
 }
 int main() {
-    ParkingTicket *p1 = new ParkingTicket(1, "MH12AB1234", 50);
-    ParkingTicket *p2 = new ParkingTicket(2, "MH14CD5678", 30);
-    ParkingTicket *p3 = new ParkingTicket(3, "MH20EF9012", 80);
+    int tn;
+    string vn;
+    float fee;
+    cout << "Enter details for Ticket 1:\n";
+    cout << "Ticket Number: "; cin >> tn; cin.ignore();
+    cout << "Vehicle Number: "; getline(cin, vn);
+    cout << "Parking Fee: "; cin >> fee;
+    ParkingTicket *p1 = new ParkingTicket(tn, vn, fee);
+
+    cout << "\nEnter details for Ticket 2:\n";
+    cout << "Ticket Number: "; cin >> tn; cin.ignore();
+    cout << "Vehicle Number: "; getline(cin, vn);
+    cout << "Parking Fee: "; cin >> fee;
+    ParkingTicket *p2 = new ParkingTicket(tn, vn, fee);
+
+    cout << "\nEnter details for Ticket 3:\n";
+    cout << "Ticket Number: "; cin >> tn; cin.ignore();
+    cout << "Vehicle Number: "; getline(cin, vn);
+    cout << "Parking Fee: "; cin >> fee;
+    ParkingTicket *p3 = new ParkingTicket(tn, vn, fee);
+
     cout << endl;
     p1->display(); p2->display(); p3->display();
     cout << endl;
@@ -433,28 +447,6 @@ int main() {
     delete p1; delete p2; delete p3;
     return 0;
 }
-Sample Output:
-Ticket #1 issued for MH12AB1234
-Ticket #2 issued for MH14CD5678
-Ticket #3 issued for MH20EF9012
-
-Ticket: 1, Vehicle: MH12AB1234, Fee: Rs. 50
-Ticket: 2, Vehicle: MH14CD5678, Fee: Rs. 30
-Ticket: 3, Vehicle: MH20EF9012, Fee: Rs. 80
-
-Total Tickets Issued: 3
-Total Collection: Rs. 160
-
---- Fees in Increasing Order ---
-Ticket: 2, Vehicle: MH14CD5678, Fee: Rs. 30
-Ticket: 1, Vehicle: MH12AB1234, Fee: Rs. 50
-
---- Fees in Increasing Order ---
-Ticket: 2, Vehicle: MH14CD5678, Fee: Rs. 30
-Ticket: 3, Vehicle: MH20EF9012, Fee: Rs. 80
-Ticket #1 destroyed.
-Ticket #2 destroyed.
-Ticket #3 destroyed.
  
 Q10: Complex Number - Operator Overloading (+, -, *)
 #include<iostream>
@@ -464,6 +456,10 @@ class Complex {
 public:
     Complex() : real(0), imag(0) {}
     Complex(float r, float i) : real(r), imag(i) {}
+    void input(string label) {
+        cout << "Enter real part of " << label << ": "; cin >> real;
+        cout << "Enter imaginary part of " << label << ": "; cin >> imag;
+    }
     Complex operator+(const Complex &c) { return Complex(real + c.real, imag + c.imag); }
     Complex operator-(const Complex &c) { return Complex(real - c.real, imag - c.imag); }
     Complex operator*(const Complex &c) {
@@ -476,8 +472,10 @@ public:
     }
 };
 int main() {
-    Complex c1(3, 4), c2(1, -2);
-    cout << "C1 = "; c1.display();
+    Complex c1, c2;
+    c1.input("C1");
+    c2.input("C2");
+    cout << "\nC1 = "; c1.display();
     cout << "C2 = "; c2.display();
     Complex sum = c1 + c2, diff = c1 - c2, prod = c1 * c2;
     cout << "C1 + C2 = "; sum.display();
@@ -485,12 +483,6 @@ int main() {
     cout << "C1 * C2 = "; prod.display();
     return 0;
 }
-Sample Output:
-C1 = 3 + 4i
-C2 = 1 - 2i
-C1 + C2 = 4 + 2i
-C1 - C2 = 2 + 6i
-C1 * C2 = 11 - 2i
  
 Q11: Number Class - Unary Minus Operator Overloading
 #include<iostream>
@@ -510,9 +502,6 @@ int main() {
     cout << "Negated:  "; n2.display();
     return 0;
 }
-Sample Output:
-Enter a number: Original: Value = 42
-Negated:  Value = -42
  
 Q12: Integer Class - Pre-increment and Post-increment Operator Overloading
 #include<iostream>
@@ -521,12 +510,14 @@ class Integer {
     int value;
 public:
     Integer(int v = 0) : value(v) {}
-    Integer& operator++() { value++; return *this; }       // Pre-increment
-    Integer operator++(int) { Integer temp = *this; value++; return temp; } // Post-increment
+    Integer& operator++() { value++; return *this; }
+    Integer operator++(int) { Integer temp = *this; value++; return temp; }
     void display() { cout << "Value = " << value << endl; }
 };
 int main() {
-    Integer obj(5);
+    int v;
+    cout << "Enter an integer value: "; cin >> v;
+    Integer obj(v);
     cout << "Before increment: "; obj.display();
     ++obj;
     cout << "After pre-increment (++obj): "; obj.display();
@@ -535,11 +526,6 @@ int main() {
     cout << "After post-increment: "; obj.display();
     return 0;
 }
-Sample Output:
-Before increment: Value = 5
-After pre-increment (++obj): Value = 6
-Value returned by post-increment (obj++): Value = 6
-After post-increment: Value = 7
  
 Q13: Employee Hierarchy - Inheritance with Salary Calculation
 #include<iostream>
@@ -626,70 +612,6 @@ int main() {
     ProjectManager pm; pm.getData(); pm.generatePaySlip();
     return 0;
 }
-Sample Output:
---- Enter Programmer Details ---
-Enter Name: Enter ID: Enter Address: Enter Mail ID: Enter Mobile No: Enter Basic Pay: 
-=== Pay Slip (Programmer) ===
-Name: lice
-ID: 101
-Address: Pune
-Mail: alice@test.com
-Mobile: 1234567890
-Basic Pay: 50000.00
-DA (52%): 26000.00
-HRA (27%): 13500.00
-Gross Salary: 89500.00
-PF (12%): 6000.00
-Staff Club Fund (0.1%): 50.00
-Net Salary: 83450.00
-
---- Enter Team Lead Details ---
-Enter Name: Enter ID: Enter Address: Enter Mail ID: Enter Mobile No: Enter Basic Pay: 
-=== Pay Slip (Team Lead) ===
-Name: Bob
-ID: 102
-Address: Mumbai
-Mail: bob@test.com
-Mobile: 0987654321
-Basic Pay: 60000.00
-DA (52%): 31200.00
-HRA (27%): 16200.00
-Gross Salary: 107400.00
-PF (12%): 7200.00
-Staff Club Fund (0.1%): 60.00
-Net Salary: 100140.00
-
---- Enter Asst. Project Manager Details ---
-Enter Name: Enter ID: Enter Address: Enter Mail ID: Enter Mobile No: Enter Basic Pay: 
-=== Pay Slip (Asst. Project Manager) ===
-Name: Charlie
-ID: 103
-Address: Delhi
-Mail: charlie@test.com
-Mobile: 1111111111
-Basic Pay: 70000.00
-DA (52%): 36400.00
-HRA (27%): 18900.00
-Gross Salary: 125300.00
-PF (12%): 8400.00
-Staff Club Fund (0.1%): 70.00
-Net Salary: 116830.00
-
---- Enter Project Manager Details ---
-Enter Name: Enter ID: Enter Address: Enter Mail ID: Enter Mobile No: Enter Basic Pay: 
-=== Pay Slip (Project Manager) ===
-Name: David
-ID: 104
-Address: Bangalore
-Mail: david@test.com
-Mobile: 2222222222
-Basic Pay: 80000.00
-DA (52%): 41600.00
-HRA (27%): 21600.00
-Gross Salary: 143200.00
-PF (12%): 9600.00
-Staff Club Fund (0.1%): 80.00
-Net Salary: 133520.00
  
 Q14: Employee Salary System Using Single Inheritance
 #include<iostream>
@@ -728,15 +650,6 @@ int main() {
     m.inputDetails(); m.inputBonus(); m.displayTotal();
     return 0;
 }
-Sample Output:
---- Enter Manager Details ---
-Enter Employee ID: Enter Employee Name: Enter Basic Salary: Enter Monthly Bonus: 
-=== Employee Information ===
-Employee ID: 1001
-Employee Name: Alice
-Basic Salary: Rs. 50000.00
-Bonus: Rs. 10000.00
-Total Salary: Rs. 60000.00
  
 Q15: Shape - Virtual Function, Triangle and Rectangle Areas
 #include<iostream>
@@ -771,11 +684,6 @@ int main() {
     }
     return 0;
 }
-Sample Output:
-1. Triangle
-2. Rectangle
-Enter choice: Enter base and height:
-Enter dimension 1: Enter dimension 2: Area of Triangle = 100.00
  
 Q16: Salary Calculation System - Abstract Class, Runtime Polymorphism
 #include<iostream>
@@ -810,12 +718,6 @@ int main() {
     }
     return 0;
 }
-Sample Output:
-1. Permanent Employee
-2. Contract Employee
-Choice: 
---- Permanent Employee ---
-Enter Basic Pay: Enter Allowance: Salary: Rs. 65000.00
  
 Q17: Electricity Bill System - Abstract Class, Dynamic Binding
 #include<iostream>
@@ -854,12 +756,6 @@ int main() {
     }
     return 0;
 }
-Sample Output:
-1. Domestic
-2. Commercial
-Choice: 
---- Commercial Bill ---
-Enter Units Consumed: Enter Rate Per Unit: Bill Amount (with 10% surcharge): Rs. 1100.00
  
 Q18: Vehicle Interface - Bicycle, Bike, Car (Java)
 #include <iostream>
@@ -983,21 +879,6 @@ int main() {
 
     return 0;
 }
-Sample Output:
-=== Bicycle ===
-Bicycle gear changed to: 2
-Bicycle speed: 15 km/h
-Bicycle brakes. Speed: 10 km/h
-
-=== Bike ===
-Bike gear changed to: 3
-Bike speed: 60 km/h
-Bike brakes. Speed: 40 km/h
-
-=== Car ===
-Car gear changed to: 4
-Car speed: 100 km/h
-Car brakes. Speed: 70 km/h
  
 Q19: Student Result Processing - Exception Handling
 #include<iostream>
@@ -1030,11 +911,6 @@ int main() {
     catch(string &e) { cout << "Exception: " << e << endl; }
     return 0;
 }
-Sample Output:
-Enter number of subjects: Enter marks for subject 1: Enter marks for subject 2: Enter marks for subject 3: 
-Total: 255.00
-Percentage: 85.00%
-Grade: A
  
 Q20: Employee Age Verification - Exception Handling
 #include<iostream>
@@ -1054,12 +930,6 @@ int main() {
     catch(string &e) { cout << "Registration Failed! Exception: " << e << endl; }
     return 0;
 }
-Sample Output:
-Enter Employee Name: Enter Age: Enter Years of Experience: 
-=== Registration Successful ===
-Name: lice
-Age: 30
-Experience: 5 years
  
 Q21: AreaCalculator - Method Overloading
 #include<iostream>
@@ -1073,19 +943,18 @@ public:
 };
 int main() {
     AreaCalculator calc;
+    double side, len, br;
+    float rad;
     cout << fixed << setprecision(2);
-    double side = 5.0;
-    cout << "Area of Square (side=" << side << "): " << calc.area(side) << endl;
-    double len = 8.0, br = 4.0;
-    cout << "Area of Rectangle (" << len << "x" << br << "): " << calc.area(len, br) << endl;
-    float rad = 7.0f;
-    cout << "Area of Circle (radius=" << rad << "): " << calc.area(rad) << endl;
+    cout << "Enter side of square: "; cin >> side;
+    cout << "Area of Square: " << calc.area(side) << endl;
+    cout << "\nEnter length of rectangle: "; cin >> len;
+    cout << "Enter breadth of rectangle: "; cin >> br;
+    cout << "Area of Rectangle: " << calc.area(len, br) << endl;
+    cout << "\nEnter radius of circle: "; cin >> rad;
+    cout << "Area of Circle: " << calc.area(rad) << endl;
     return 0;
 }
-Sample Output:
-Area of Square (side=5.00): 25.00
-Area of Rectangle (8.00x4.00): 32.00
-Area of Circle (radius=7.00): 153.94
  
 Q22: Calculator - Method Overloading (Multiplication)
 #include<iostream>
@@ -1099,18 +968,23 @@ public:
 };
 int main() {
     Calculator calc;
-    cout << "Multiply 2 integers (4, 5): " << calc.multiply(4, 5) << endl;
-    cout << "Multiply 3 integers (2, 3, 4): " << calc.multiply(2, 3, 4) << endl;
+    int a, b, c;
+    double d1, d2;
+    cout << "--- Multiply two integers ---\n";
+    cout << "Enter two integers: "; cin >> a >> b;
+    cout << "Result: " << calc.multiply(a, b) << endl;
+    cout << "\n--- Multiply three integers ---\n";
+    cout << "Enter three integers: "; cin >> a >> b >> c;
+    cout << "Result: " << calc.multiply(a, b, c) << endl;
+    cout << "\n--- Multiply two doubles ---\n";
+    cout << "Enter two double values: "; cin >> d1 >> d2;
     cout << fixed << setprecision(2);
-    cout << "Multiply 2 doubles (3.5, 2.5): " << calc.multiply(3.5, 2.5) << endl;
+    cout << "Result: " << calc.multiply(d1, d2) << endl;
     return 0;
 }
-Sample Output:
-Multiply 2 integers (4, 5): 20
-Multiply 3 integers (2, 3, 4): 24
-Multiply 2 doubles (3.5, 2.5): 8.75
  
 Q23: Hierarchical Inheritance - Area of Circle, Rectangle, Triangle (Java)
+import java.util.Scanner;
 class Shape {
     double area() { return 0; }
 }
@@ -1131,7 +1005,7 @@ class Triangle extends Shape {
 }
 public class AreaDemo {
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Enter radius of circle: ");
         double r = sc.nextDouble();
         Shape s = new Circle(r);
@@ -1146,12 +1020,9 @@ public class AreaDemo {
         System.out.printf("Area of Triangle: %.2f\n", s.area());
     }
 }
-Sample Output:
-Enter radius of circle: Area of Circle: 153.94
-Enter length and breadth of rectangle: Area of Rectangle: 50.00
-Enter base and height of triangle: Area of Triangle: 40.00
  
 Q24: Hierarchical Inheritance - Perimeter of Circle, Rectangle, Triangle (Java)
+import java.util.Scanner;
 class Shape {
     double perimeter() { return 0; }
 }
@@ -1172,7 +1043,7 @@ class Triangle extends Shape {
 }
 public class PerimeterDemo {
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Enter radius of circle: ");
         double r = sc.nextDouble();
         Shape s = new Circle(r);
@@ -1187,10 +1058,6 @@ public class PerimeterDemo {
         System.out.printf("Perimeter of Triangle: %.2f\n", s.perimeter());
     }
 }
-Sample Output:
-Enter radius of circle: Perimeter of Circle: 43.98
-Enter length and breadth of rectangle: Perimeter of Rectangle: 30.00
-Enter 3 sides of triangle: Perimeter of Triangle: 12.00
  
 Q25: Multithreading - Even, Odd, and Divisible by 5 using Thread Class and Runnable Interface (Java)
 class EvenThread extends Thread {
@@ -1204,7 +1071,6 @@ class EvenThread extends Thread {
         }
     }
 }
-
 class OddRunnable implements Runnable {
     int limit;
     OddRunnable(int limit) { this.limit = limit; }
@@ -1216,7 +1082,6 @@ class OddRunnable implements Runnable {
         }
     }
 }
-
 class DivBy5Thread extends Thread {
     int limit;
     DivBy5Thread(int limit) { this.limit = limit; }
@@ -1228,20 +1093,17 @@ class DivBy5Thread extends Thread {
         }
     }
 }
-
 public class ThreadDemo {
     public static void main(String[] args) throws InterruptedException {
         // Part A: Even (Thread class) and Odd (Runnable interface) from 1 to 20
         System.out.println("===== Part A: Even & Odd (1 to 20) =====");
-        EvenThread t1 = new EvenThread(20);            // using Thread class
-        Thread t2 = new Thread(new OddRunnable(20));   // using Runnable interface
+        EvenThread t1 = new EvenThread(20);
+        Thread t2 = new Thread(new OddRunnable(20));
         t1.start();
         t2.start();
         t1.join();
         t2.join();
-
         System.out.println();
-
         // Part B: Even and Divisible by 5 from 1 to 50
         System.out.println("===== Part B: Even & Divisible by 5 (1 to 50) =====");
         EvenThread t3 = new EvenThread(50);
@@ -1252,68 +1114,5 @@ public class ThreadDemo {
         t4.join();
     }
 }
-Sample Output:
-===== Part A: Even & Odd (1 to 20) =====
---- Even Numbers (1 to 20) ---
---- Odd Numbers (1 to 20) ---
-Even: 2
-Odd:  1
-Even: 4
-Odd:  3
-Even: 6
-Odd:  5
-Even: 8
-Odd:  7
-Odd:  9
-Even: 10
-Odd:  11
-Even: 12
-Even: 14
-Odd:  13
-Odd:  15
-Even: 16
-Even: 18
-Odd:  17
-Even: 20
-Odd:  19
-
-===== Part B: Even & Divisible by 5 (1 to 50) =====
---- Even Numbers (1 to 50) ---
-Even: 2
---- Numbers Divisible by 5 (1 to 50) ---
-Div5: 5
-Even: 4
-Div5: 10
-Even: 6
-Div5: 15
-Even: 8
-Even: 10
-Div5: 20
-Even: 12
-Div5: 25
-Even: 14
-Even: 16
-Div5: 30
-Even: 18
-Div5: 35
-Even: 20
-Even: 22
-Div5: 40
-Even: 24
-Div5: 45
-Even: 26
-Even: 28
-Div5: 50
-Even: 30
-Even: 32
-Even: 34
-Even: 36
-Even: 38
-Even: 40
-Even: 42
-Even: 44
-Even: 46
-Even: 48
-Even: 50
  
 
