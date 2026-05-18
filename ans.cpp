@@ -862,39 +862,126 @@ Choice:
 Enter Units Consumed: Enter Rate Per Unit: Bill Amount (with 10% surcharge): Rs. 1100.00
  
 Q18: Vehicle Interface - Bicycle, Bike, Car (Java)
-interface Vehicle {
-    void gearChange(int gear);
-    void speedUp(int increment);
-    void applyBrakes(int decrement);
-}
-class Bicycle implements Vehicle {
-    int speed = 0, gear = 1;
-    public void gearChange(int g) { gear = g; System.out.println("Bicycle gear changed to: " + gear); }
-    public void speedUp(int inc) { speed += inc; System.out.println("Bicycle speed: " + speed + " km/h"); }
-    public void applyBrakes(int dec) { speed = Math.max(0, speed - dec); System.out.println("Bicycle brakes. Speed: " + speed + " km/h"); }
-}
-class Bike implements Vehicle {
-    int speed = 0, gear = 1;
-    public void gearChange(int g) { gear = g; System.out.println("Bike gear changed to: " + gear); }
-    public void speedUp(int inc) { speed += inc; System.out.println("Bike speed: " + speed + " km/h"); }
-    public void applyBrakes(int dec) { speed = Math.max(0, speed - dec); System.out.println("Bike brakes. Speed: " + speed + " km/h"); }
-}
-class Car implements Vehicle {
-    int speed = 0, gear = 1;
-    public void gearChange(int g) { gear = g; System.out.println("Car gear changed to: " + gear); }
-    public void speedUp(int inc) { speed += inc; System.out.println("Car speed: " + speed + " km/h"); }
-    public void applyBrakes(int dec) { speed = Math.max(0, speed - dec); System.out.println("Car brakes. Speed: " + speed + " km/h"); }
-}
-public class VehicleDemo {
-    public static void main(String[] args) {
-        Vehicle v;
-        System.out.println("=== Bicycle ===");
-        v = new Bicycle(); v.gearChange(2); v.speedUp(15); v.applyBrakes(5);
-        System.out.println("\n=== Bike ===");
-        v = new Bike(); v.gearChange(3); v.speedUp(60); v.applyBrakes(20);
-        System.out.println("\n=== Car ===");
-        v = new Car(); v.gearChange(4); v.speedUp(100); v.applyBrakes(30);
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+protected:
+    int speed;
+    int gear;
+
+public:
+    Vehicle() {
+        speed = 0;
+        gear = 1;
     }
+
+    virtual void gearChange(int gear) = 0;
+    virtual void speedUp(int increment) = 0;
+    virtual void applyBrakes(int decrement) = 0;
+};
+
+class Bicycle : public Vehicle {
+public:
+    void gearChange(int g) override {
+        gear = g;
+        cout << "Bicycle gear changed to " << gear << endl;
+    }
+
+    void speedUp(int inc) override {
+        speed += inc;
+        cout << "Bicycle speed increased to " << speed << endl;
+    }
+
+    void applyBrakes(int dec) override {
+        speed -= dec;
+        if (speed < 0) {
+            speed = 0;
+            cout << "STOP" << endl;
+        } else {
+            cout << "Bicycle speed decreased to " << speed << endl;
+        }
+    }
+};
+
+class Bike : public Vehicle {
+public:
+    void gearChange(int g) override {
+        gear = g;
+        cout << "Bike gear changed to " << gear << endl;
+    }
+
+    void speedUp(int inc) override {
+        speed += inc;
+        cout << "Bike speed increased to " << speed << endl;
+    }
+
+    void applyBrakes(int dec) override {
+        speed -= dec;
+        if (speed < 0) {
+            speed = 0;
+            cout << "STOP" << endl;
+        } else {
+            cout << "Bike speed decreased to " << speed << endl;
+        }
+    }
+};
+
+class Car : public Vehicle {
+public:
+    void gearChange(int g) override {
+        gear = g;
+        cout << "Car gear changed to " << gear << endl;
+    }
+
+    void speedUp(int inc) override {
+        speed += inc;
+        cout << "Car speed increased to " << speed << endl;
+    }
+
+    void applyBrakes(int dec) override {
+        speed -= dec;
+        if (speed < 0) {
+            speed = 0;
+            cout << "STOP" << endl;
+        } else {
+            cout << "Car speed decreased to " << speed << endl;
+        }
+    }
+};
+
+int main() {
+    int choice, g, s, b;
+
+    cout << "Choose Vehicle:\n1. Bicycle\n2. Bike\n3. Car\n";
+    cin >> choice;
+
+    cout << "Enter gear value: ";
+    cin >> g;
+
+    cout << "Enter speed increment: ";
+    cin >> s;
+
+    cout << "Enter brake decrement: ";
+    cin >> b;
+
+    Vehicle *v;
+
+    if (choice == 1)
+        v = new Bicycle();
+    else if (choice == 2)
+        v = new Bike();
+    else
+        v = new Car();
+
+    cout << "\n--- Output ---\n";
+    v->gearChange(g);
+    v->speedUp(s);
+    v->applyBrakes(b);
+
+    delete v;
+
+    return 0;
 }
 Sample Output:
 === Bicycle ===
