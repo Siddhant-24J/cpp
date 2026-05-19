@@ -1,5 +1,31 @@
-AI2301: Object Oriented Programming
-Complete Question & Answer Book (25 Questions)
+q1- 30
+q2- 73
+q3-116
+q4-160
+q5-204
+q6-250
+q7-296
+q8-352
+q9-414
+q10-477
+q11-513
+q12-532
+q13-556
+q14-642
+q15-618
+q16-714
+q17-748
+q18-786
+q19-909
+q20-941
+q21-960
+q22-985
+q23-1012
+q24-1050
+q25-1088
+
+
+
 
 Q1: Book Class - Multiple Books with Tabular Display and Total Price
 #include<iostream>
